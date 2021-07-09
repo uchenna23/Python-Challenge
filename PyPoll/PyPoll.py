@@ -10,6 +10,8 @@ total_votes = 0
 #create lists
 candidates = []
 vote_count = []
+winners_list = []    
+vote_percentage = []
 #read csvfile
 with open(vote_csv,'r') as csvfile:
     csvreader= csv.reader(csvfile)
@@ -24,14 +26,11 @@ with open(vote_csv,'r') as csvfile:
 for key, value in elections.items():
     candidates.append(key)
     vote_count.append(value)
-    
-vote_percentage = []
 for x in vote_count:
     vote_percentage.append(round(x/total_votes*100, 1))
 #clean the data
 new_data = list(zip(candidates, vote_count, vote_percentage))
 #place winners in winners list
-winners_list = []
 for name in new_data:
     if max(vote_count) == name[1]:
         winners_list.append(name[0])
